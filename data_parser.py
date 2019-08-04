@@ -14,6 +14,9 @@ def get_category_tite_dict(json_path):
 def get_tags(csvpath):
     return cvs_reader.get_cvs_data(csvpath)['tags']
 
+def get_labels(cvpath):
+    return cvs_reader.get_cvs_data(cvpath)['category_id']
+
 def get_vocab(tags):
     splited_tags = []
     for tag in tags:
