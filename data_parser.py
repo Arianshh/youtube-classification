@@ -23,3 +23,4 @@ def get_vocab(tags):
         print(tag)
 
         return list(set((splited_tags)))
+##
