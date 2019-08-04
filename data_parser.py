@@ -22,5 +22,4 @@ def get_vocab(tags):
         tag = tag[1:len(tag)-1]
         print(tag)
 
-        return list(set((splited_tags)))
-##
+        return enumerate(list(set((splited_tags))))
