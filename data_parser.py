@@ -1,4 +1,6 @@
 import json
+import cvs_reader
+
 
 def get_category_tite_dict(json_path):
     dict = {}
@@ -9,9 +11,15 @@ def get_category_tite_dict(json_path):
 
     return dict
 
-def get_tags(csvfile):
-    pass
+def get_tags(csvpath):
+    return cvs_reader.get_cvs_data(csvpath)['tags']
 
 def get_vocab(tags):
-    pass
+    splited_tags = []
+    for tag in tags:
+        splited_tags += tag.split("|")
+    for tag in splited_tags:
+        tag = tag[1:len(tag)-1]
+        print(tag)
 
+        return list(set((splited_tags)))
