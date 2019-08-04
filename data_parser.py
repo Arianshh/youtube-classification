@@ -8,3 +8,10 @@ def get_category_tite_dict(json_path):
             dict.update({item['id']:item['snippet']['title']})
 
     return dict
+
+def get_tags(csvfile):
+    pass
+
+def get_vocab(tags):
+    pass
+
