@@ -20,8 +20,8 @@ def df_to_ds(dataframe,target_column, shuffle=True, batch_size=32):
   return ds
 
 
-def get_tags_as_inputs(tags, batch_size=32):
-    train, test = train_test_split(tags, test_size=0.2)
+def get_tags_as_inputs(tags_and_labels, batch_size=32):
+    train, test = train_test_split(tags_and_labels, test_size=0.2)
     train, val = train_test_split(train, test_size=0.2)
     print(len(train), 'train examples')
     print(len(val), 'validation examples')

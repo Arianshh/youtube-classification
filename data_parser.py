@@ -1,5 +1,6 @@
 import json
 import cvs_reader
+from pandas import pd
 
 
 def get_category_title_dict(json_path):
@@ -12,12 +13,19 @@ def get_category_title_dict(json_path):
     return dict
 
 
+def get_tags_and_labels(csvpath):
+    df = cvs_reader.get_cvs_data('data/CAvideos.csv')
+    tal = pd.DataFrame(df, columns=['tags', 'category_id'])
+
+    return tal
+
+
 def get_tags(csvpath):
     return cvs_reader.get_cvs_data(csvpath)['tags']
 
 
-def get_labels(cvpath):
-    return cvs_reader.get_cvs_data(cvpath)['category_id']
+def get_labels(csvpath):
+    return cvs_reader.get_cvs_data(csvpath)['category_id']
 
 
 def get_vocab(tags):
