@@ -3,16 +3,17 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import tensorflow as tf
 
 from sklearn.model_selection import train_test_split
-from data_parser import get_tags
+from data_parser import *
 
-def df_to_ds(dataframe,target_column, shuffle=True, batch_size=32):
-  dataframe = dataframe.copy()
-  labels = dataframe.pop(target_column)
-  ds = tf.data.Dataset.from_tensor_slices((dict(dataframe), labels))
-  if shuffle:
-    ds = ds.shuffle(buffer_size=len(dataframe))
-  ds = ds.batch(batch_size)
-  return ds
+
+def df_to_ds(dataframe, target_column, shuffle=True, batch_size=32):
+    dataframe = dataframe.copy()
+    labels = dataframe.pop(target_column)
+    ds = tf.data.Dataset.from_tensor_slices((dict(dataframe), labels))
+    if shuffle:
+        ds = ds.shuffle(buffer_size=len(dataframe))
+    ds = ds.batch(batch_size)
+    return ds
 
 
 def get_tags_as_inputs(tags_and_labels, batch_size=32):
@@ -28,7 +29,9 @@ def get_tags_as_inputs(tags_and_labels, batch_size=32):
 
     return train_ds, val_ds, test_ds
 
-def load_raw_data(tags):
+
+def load_raw_data(csvpath):
+    tags = get_tags(csvpath='data/CAvideos.csv')
     normilized_tags = []
     final_tags = []
     i = 0
@@ -38,8 +41,8 @@ def load_raw_data(tags):
     for tag in normilized_tags:
         for word in tag:
             if '"' in word:
-               word = word.replace('"', '')
+                word = word.replace('"', '')
             final_tags[i].append(word)
-        i +=1
+        i += 1
 
-    return final_tags
+    return pd.DataFrame(final_tags)
