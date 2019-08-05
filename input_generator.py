@@ -1,14 +1,9 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-# import numpy as np
-# import pandas as pd
-
 import tensorflow as tf
-# from tensorflow import feature_column
-# from tensorflow import keras
 
 from sklearn.model_selection import train_test_split
-
+from data_parser import get_tags
 
 def df_to_ds(dataframe,target_column, shuffle=True, batch_size=32):
   dataframe = dataframe.copy()
@@ -32,3 +27,19 @@ def get_tags_as_inputs(tags_and_labels, batch_size=32):
     test_ds = df_to_ds(test, 'category_id', shuffle=False, batch_size=batch_size)
 
     return train_ds, val_ds, test_ds
+
+def load_raw_data(tags):
+    normilized_tags = []
+    final_tags = []
+    i = 0
+    for tag in tags:
+        normilized_tags.append(tag.split("|"))
+        final_tags.append([])
+    for tag in normilized_tags:
+        for word in tag:
+            if '"' in word:
+               word = word.replace('"', '')
+            final_tags[i].append(word)
+        i +=1
+
+    return final_tags

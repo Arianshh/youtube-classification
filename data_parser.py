@@ -19,7 +19,7 @@ def get_tags_and_labels(csvpath):
     for i, col in enumerate(tal.columns):
         if col == 'tags':
             tal.iloc[:, i] = tal.iloc[:, i].str.replace('"', '')
-            tal.iloc[:, i] = tal.iloc[:, i].str.replace('|', ' ')
+            tal.iloc[:, i] = tal.iloc[:, i].str.replace('|', '.')
 
     return tal
 
