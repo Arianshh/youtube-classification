@@ -30,9 +30,11 @@ def get_labels(csvpath):
 
 def get_vocab(tags):
     splited_tags = []
+    normalized_tags = []
     for tag in tags:
         splited_tags += tag.split("|")
     for tag in splited_tags:
-        tag = tag[1:len(tag) - 1]
+        normalized_tags.append(tag[1:len(tag) - 1])
 
-        return list(set((splited_tags)))
+    return list(set((normalized_tags)))
+print(get_vocab(get_tags(csvpath='data/CAvideos.csv')))
