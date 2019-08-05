@@ -16,6 +16,10 @@ def get_category_title_dict(json_path):
 def get_tags_and_labels(csvpath):
     df = cvs_reader.get_cvs_data(csvpath)
     tal = pd.DataFrame(df, columns=['tags', 'category_id'])
+    for i, col in enumerate(tal.columns):
+        if col == 'tags':
+            tal.iloc[:, i] = tal.iloc[:, i].str.replace('"', '')
+            tal.iloc[:, i] = tal.iloc[:, i].str.replace('|', ' ')
 
     return tal
 
@@ -37,4 +41,3 @@ def get_vocab(tags):
         normalized_tags.append(tag[1:len(tag) - 1])
 
     return list(set((normalized_tags)))
-print(get_vocab(get_tags(csvpath='data/CAvideos.csv')))
