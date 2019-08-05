@@ -26,6 +26,5 @@ def get_vocab(tags):
         splited_tags += tag.split("|")
     for tag in splited_tags:
         tag = tag[1:len(tag) - 1]
-        print(tag)
 
         return list(set((splited_tags)))
