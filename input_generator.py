@@ -9,7 +9,7 @@ from data_parser import *
 def df_to_ds(dataframe, target_column, shuffle=True, batch_size=32):
     dataframe = dataframe.copy()
     labels = dataframe.pop(target_column)
-    ds = tf.data.Dataset.from_tensor_slices((dict(dataframe), labels))
+    ds = tf.data.Dataset.from_tensor_slices((dataframe, labels))
     if shuffle:
         ds = ds.shuffle(buffer_size=len(dataframe))
     ds = ds.batch(batch_size)
@@ -31,11 +31,11 @@ def get_tags_as_inputs(tags_and_labels, batch_size=32):
 
 
 def load_raw_data(csvpath):
-    tags = get_tags(csvpath='data/CAvideos.csv')
+    tabs = get_tags_and_labels(csvpath)
     normilized_tags = []
     final_tags = []
     i = 0
-    for tag in tags:
+    for tag in tabs['tags']:
         normilized_tags.append(tag.split("|"))
         final_tags.append([])
     for tag in normilized_tags:
@@ -44,5 +44,6 @@ def load_raw_data(csvpath):
                 word = word.replace('"', '')
             final_tags[i].append(word)
         i += 1
+    tabs['tags'] = pd.DataFrame(final_tags)
 
-    return pd.DataFrame(final_tags)
+    return tabs
