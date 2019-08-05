@@ -1,6 +1,6 @@
 import json
 import cvs_reader
-from pandas import pd
+import pandas as pd
 
 
 def get_category_title_dict(json_path):
@@ -14,7 +14,7 @@ def get_category_title_dict(json_path):
 
 
 def get_tags_and_labels(csvpath):
-    df = cvs_reader.get_cvs_data('data/CAvideos.csv')
+    df = cvs_reader.get_cvs_data(csvpath)
     tal = pd.DataFrame(df, columns=['tags', 'category_id'])
 
     return tal

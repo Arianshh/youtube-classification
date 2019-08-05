@@ -27,8 +27,8 @@ def get_tags_as_inputs(tags_and_labels, batch_size=32):
     print(len(val), 'validation examples')
     print(len(test), 'test examples')
 
-    train_ds = df_to_ds(train, target_column='column_id', batch_size=batch_size)
-    val_ds = df_to_ds(val, 'column_id', shuffle=False, batch_size=batch_size)
-    test_ds = df_to_ds(test, 'column_id', shuffle=False, batch_size=batch_size)
+    train_ds = df_to_ds(train, target_column='category_id', batch_size=batch_size)
+    val_ds = df_to_ds(val, 'category_id', shuffle=False, batch_size=batch_size)
+    test_ds = df_to_ds(test, 'category_id', shuffle=False, batch_size=batch_size)
 
     return train_ds, val_ds, test_ds
