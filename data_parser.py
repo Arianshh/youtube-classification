@@ -43,6 +43,7 @@ def get_clean_tags(tags):
             if '"' in word:
                 word = word.replace('"', '')
             final_tags[i].append(word)
+        i += 1
     return final_tags
 
 
@@ -57,3 +58,16 @@ def get_vocab(tags):
         for tag in tags:
             vocab.append(tag)
     return list(set(vocab))
+# 6
+# 11
+# 23
+# 25
+# 28
+# 33
+# 49
+# 67
+# 72
+# 75
+# 114
+# 123
+# 124
