@@ -51,5 +51,9 @@ def get_labels(csvpath):
 
 
 def get_vocab(tags):
-    vocab = set(list(get_clean_tags(tags)))
-    return vocab
+    vocab = []
+    cleaned_tags = (get_clean_tags(tags))
+    for tags in cleaned_tags:
+        for tag in tags:
+            vocab.append(tag)
+    return list(set(vocab))
