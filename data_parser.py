@@ -1,6 +1,8 @@
 import json
-import cvs_reader
+
 import pandas as pd
+
+import cvs_reader
 
 
 def get_category_title_dict(json_path):
@@ -28,16 +30,26 @@ def get_tags(csvpath):
     return cvs_reader.get_cvs_data(csvpath)['tags']
 
 
+def get_clean_tags(tags):
+    normalized_tags = []
+    final_tags = []
+    i = 0
+
+    for tag in tags:
+        normalized_tags.append(tag.split("|"))
+        final_tags.append([])
+    for tag in normalized_tags:
+        for word in tag:
+            if '"' in word:
+                word = word.replace('"', '')
+            final_tags[i].append(word)
+    return final_tags
+
+
 def get_labels(csvpath):
     return cvs_reader.get_cvs_data(csvpath)['category_id']
 
 
 def get_vocab(tags):
-    splited_tags = []
-    normalized_tags = []
-    for tag in tags:
-        splited_tags += tag.split("|")
-    for tag in splited_tags:
-        normalized_tags.append(tag[1:len(tag) - 1])
-
-    return list(set((normalized_tags)))
+    vocab = set(list(get_clean_tags(tags)))
+    return vocab

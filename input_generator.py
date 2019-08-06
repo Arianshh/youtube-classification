@@ -32,18 +32,7 @@ def get_tags_as_inputs(tags_and_labels, batch_size=32):
 
 def load_raw_data(csvpath):
     tabs = get_tags_and_labels(csvpath)
-    normilized_tags = []
-    final_tags = []
-    i = 0
-    for tag in tabs['tags']:
-        normilized_tags.append(tag.split("|"))
-        final_tags.append([])
-    for tag in normilized_tags:
-        for word in tag:
-            if '"' in word:
-                word = word.replace('"', '')
-            final_tags[i].append(word)
-        i += 1
-    tabs['tags'] = pd.DataFrame(final_tags)
+    tags = get_clean_tags(tabs['tags'])
+    tabs['tags'] = pd.DataFrame(tags)
 
     return tabs
