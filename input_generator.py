@@ -15,6 +15,14 @@ def df_to_ds(dataframe, target_column, shuffle=True, batch_size=32):
     return ds
 
 
+def load_dataset_with_lables(dataframe, target_column):
+    dataframe = dataframe.copy()
+    labels = dataframe.pop(target_column)
+
+    train_ds, test_ds, train_lb, test_lb = train_test_split(dataframe.index, labels, test_size=0.2)
+    return train_ds, test_ds, train_lb, test_lb
+
+
 def load_dataset(tags_and_labels, batch_size=32):
     train, test = train_test_split(tags_and_labels, test_size=0.2)
     train, val = train_test_split(train, test_size=0.2)
