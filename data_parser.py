@@ -56,4 +56,5 @@ def get_vocab(tags):
     for tags in cleaned_tags:
         for tag in tags:
             vocab.append(tag)
+    vocab.append('NA')
     return list(set(vocab))
