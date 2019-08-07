@@ -17,9 +17,12 @@ def df_to_ds(dataframe, target_column, shuffle=True, batch_size=32):
 
 def load_dataset_with_lables(dataframe, target_column):
     dataframe = dataframe.copy()
-    labels = dataframe.pop(target_column)
+    # labels = dataframe.pop(target_column)
+    #
+    # train_ds, test_ds, train_lb, test_lb = train_test_split(dataframe.index, labels, test_size=0.2)
+    target_attribute = dataframe.pop(target_column)
+    train_ds, test_ds, train_lb, test_lb = train_test_split(dataframe, target_attribute, test_size=0.2)
 
-    train_ds, test_ds, train_lb, test_lb = train_test_split(dataframe.index, labels, test_size=0.2)
     return train_ds, test_ds, train_lb, test_lb
 
 
