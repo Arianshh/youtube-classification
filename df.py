@@ -13,6 +13,6 @@ def create_seperate_columns(df, max_of_tags, column, nan_value='notags'):
 
 def create_listed_columns(df, column):
     # new data frame with split value columns
-    df[column]= df[column].str.split(".", expand = True)
+    df[column]= df[column].str.split(".")
 
     return df
