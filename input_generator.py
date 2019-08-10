@@ -22,6 +22,7 @@ def load_dataset_with_lables(dataframe, target_column):
     # train_ds, test_ds, train_lb, test_lb = train_test_split(dataframe.index, labels, test_size=0.2)
     target_attribute = dataframe.pop(target_column)
     train_ds, test_ds, train_lb, test_lb = train_test_split(dataframe, target_attribute, test_size=0.2)
+    train_ds, val_ds, train_lb, val_lb = train_test_split(train_ds, train_lb, test_size=0.2)
 
     return train_ds, test_ds, train_lb, test_lb
 
