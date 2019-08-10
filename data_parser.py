@@ -58,16 +58,9 @@ def get_vocab(tags):
         for tag in tags:
             vocab.append(tag)
     return list(set(vocab))
-# 6
-# 11
-# 23
-# 25
-# 28
-# 33
-# 49
-# 67
-# 72
-# 75
-# 114
-# 123
-# 124
+
+
+def get_vocab_dict(vocab):
+    voc_di = {i: vo for i, vo in enumerate(vocab)}
+    voc_di[0] = 'notags'
+    return {vo: i for i, vo in voc_di.items()}
