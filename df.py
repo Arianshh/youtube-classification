@@ -13,3 +13,7 @@ def create_seperate_columns(df, max_of_tags, column, nan_value='notags'):
 def create_listed_columns(df, column):
     df[column] = df[column].str.split(".")
     return df
+
+
+def create_df_from_list():
+    pass

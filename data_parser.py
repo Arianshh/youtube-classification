@@ -54,3 +54,15 @@ def get_vocab_as_dict(vocab):
     voc_di = {i: vo for i, vo in enumerate(vocab)}
     voc_di[0] = 'notags'
     return {vo: i for i, vo in voc_di.items()}
+
+
+def remove_infrequent_values(threshold, dirty_tags):
+    clean_tags = get_clean_tags(dirty_tags)
+    union = []
+    for index in range(0, len(clean_tags)):
+        union += clean_tags[index] + ['SEP']
+    for tag in union:
+        if tag != 'SEP' and union.count(tag) <= threshold:
+            union.pop(tag)
+
+    return union[0].split('SEP')
