@@ -1,7 +1,6 @@
 import json
 
 import pandas as pd
-
 import cvs_reader
 
 
@@ -51,7 +50,7 @@ def get_vocab(tags):
     return list(set(vocab))
 
 
-def get_vocab_dict(vocab):
+def get_vocab_as_dict(vocab):
     voc_di = {i: vo for i, vo in enumerate(vocab)}
     voc_di[0] = 'notags'
     return {vo: i for i, vo in voc_di.items()}
