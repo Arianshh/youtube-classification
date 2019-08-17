@@ -54,20 +54,3 @@ def get_vocab_as_dict(vocab):
     voc_di = {i: vo for i, vo in enumerate(vocab)}
     voc_di[0] = 'notags'
     return {vo: i for i, vo in voc_di.items()}
-
-
-def remove_infrequent_values(threshold, clean_tags):
-    union = []
-    seen = []
-    for index in range(0, len(clean_tags)):
-        union += clean_tags[index] + ['SEP']
-    for tag in union:
-        if tag not in seen:
-            c = union.count(tag)
-            seen.append(tag)
-            if tag != 'SEP' and c <= threshold:
-                print(tag, ' removed:', c)
-                union.remove(tag)
-
-    return union[0].split('SEP')
-
