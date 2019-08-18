@@ -26,3 +26,9 @@ def get_clean_tags(tags):
             final_tags[i].append(word)
         i += 1
     return final_tags
+
+
+def prune_vocab(vocab):
+    result = sorted(vocab, key = vocab.count)
+
+

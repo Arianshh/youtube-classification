@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def get_cvs_data(path):
-    dataframe = pd.read_csv(path)
+    dataframe = pd.read_csv(path, error_bad_lines=False)
     return dataframe
 
 
