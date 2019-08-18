@@ -14,5 +14,6 @@ def load_dataframe(csvpath, columns):
     for i, col in enumerate(df.columns):
         if col == 'tags':
             df.iloc[:, i] = (df.iloc[:, i]).str.replace('"', '')
+            df.iloc[:, i] = (df.iloc[:, i]).str.replace('#', '')
 
     return df
