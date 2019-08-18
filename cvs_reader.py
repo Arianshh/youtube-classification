@@ -9,10 +9,10 @@ def get_cvs_data(path):
 
 
 def load_dataframe(csvpath, columns):
-    df = get_cvs_data(csvpath)
-    tal = pd.DataFrame(df, columns=columns)
-    for i, col in enumerate(tal.columns):
+    csvdf = get_cvs_data(csvpath)
+    df = pd.DataFrame(csvdf, columns=columns)
+    for i, col in enumerate(df.columns):
         if col == 'tags':
-            tal.iloc[:, i] = tal.iloc[:, i].str.replace('"', '')
+            df.iloc[:, i] = (df.iloc[:, i]).str.replace('"', '')
 
-    return tal
+    return df
