@@ -2,7 +2,9 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 from sklearn.model_selection import train_test_split
 
 
-def load_dataset_with_lables(dataframe, target_column):
+def generate_dataset(dataframe, target_column):
+    """ Given dataframe creates train, test and val datasets."""
+
     dataframe = dataframe.copy()
 
     target_attribute = dataframe.pop(target_column)
