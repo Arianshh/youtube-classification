@@ -17,9 +17,12 @@ def load_dataframe(csvpath, columns):
 
     csvdf = get_cvs_data(csvpath)
     df = pd.DataFrame(csvdf, columns=columns)
+
     for i, col in enumerate(df.columns):
         if col == 'tags':
             df.iloc[:, i] = (df.iloc[:, i]).str.replace('"', '')
+    for i, col in enumerate(df.columns):
+        if col == 'tags':
             df.iloc[:, i] = (df.iloc[:, i]).str.replace('#', '')
 
     return df
