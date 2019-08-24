@@ -9,17 +9,17 @@ def get_tags_frequency(tags):
     cleaned_tags = get_clean_tags(tags)
     for tags in cleaned_tags:
         for tag in tags:
-            if tag not in frequency_dict:
+            if tag not in frequency_dict.keys():
                 frequency_dict[tag] = 0
-                continue
-            frequency_dict[tag] += 1
+            else:
+                frequency_dict[tag] += 1
 
     return frequency_dict
 
 
 def get_tags_vocab(frequency_dict, threshold):
     """ Given frequency dictionary of tags creates
-     vocab by pruning tags with frequency less thab threshold."""
+     vocab by pruning tags with frequency less than threshold."""
 
     pruned_vocab = []
     for tag, freq in frequency_dict.items():
