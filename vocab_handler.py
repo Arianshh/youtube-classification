@@ -34,5 +34,5 @@ def get_tags_vocab_as_dict(pruned_vocab):
     keys and indexes as values."""
 
     voc_di = {i: vo for i, vo in enumerate(pruned_vocab)}
-    voc_di[-1] = 'notags'
+    voc_di[-1]  = 'notags'
     return {vo: int(i) for i, vo in voc_di.items()}
