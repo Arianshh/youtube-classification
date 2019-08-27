@@ -1,8 +1,8 @@
-def create_seperate_columns(df, num_of_columns, column, nan_value='notags'):
+def create_seperate_columns(df, num_of_columns, column, nan_value='notags', splitor='|'):
     """ Split tags into num_of_columns
      columns by using '|' as separator."""
 
-    new = df[column].str.split("|", expand=True)
+    new = df[column].str.split(splitor, expand=True)
 
     for i in range(0, num_of_columns):
         name = 'tag_' + str(i)
